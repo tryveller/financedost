@@ -10,33 +10,53 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ApiExtractMemoryRouteImport } from './routes/api/extract-memory'
+import { Route as ApiAgentRouteImport } from './routes/api/agent'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiExtractMemoryRoute = ApiExtractMemoryRouteImport.update({
+  id: '/api/extract-memory',
+  path: '/api/extract-memory',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiAgentRoute = ApiAgentRouteImport.update({
+  id: '/api/agent',
+  path: '/api/agent',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/api/agent': typeof ApiAgentRoute
+  '/api/extract-memory': typeof ApiExtractMemoryRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/api/agent': typeof ApiAgentRoute
+  '/api/extract-memory': typeof ApiExtractMemoryRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/api/agent': typeof ApiAgentRoute
+  '/api/extract-memory': typeof ApiExtractMemoryRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/api/agent' | '/api/extract-memory'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/api/agent' | '/api/extract-memory'
+  id: '__root__' | '/' | '/api/agent' | '/api/extract-memory'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ApiAgentRoute: typeof ApiAgentRoute
+  ApiExtractMemoryRoute: typeof ApiExtractMemoryRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,22 +68,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/extract-memory': {
+      id: '/api/extract-memory'
+      path: '/api/extract-memory'
+      fullPath: '/api/extract-memory'
+      preLoaderRoute: typeof ApiExtractMemoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/agent': {
+      id: '/api/agent'
+      path: '/api/agent'
+      fullPath: '/api/agent'
+      preLoaderRoute: typeof ApiAgentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ApiAgentRoute: ApiAgentRoute,
+  ApiExtractMemoryRoute: ApiExtractMemoryRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
