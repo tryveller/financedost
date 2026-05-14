@@ -32,7 +32,6 @@ export const Route = createFileRoute("/api/extract-memory")({
           const { object } = await generateObject({
             model,
             schema,
-            mode: "json",
             messages: [
               { role: "system", content: EXTRACT_PROMPT },
               { role: "user", content: transcript || "(empty transcript)" },
