@@ -161,14 +161,14 @@ function Index() {
       setMemory((m) => {
         const merged = [...m.facts];
         for (const f of data.new_facts) if (!merged.includes(f)) merged.push(f);
-        return {
-          ...m,
-          facts: merged,
-          session_log: [
-            ...m.session_log,
-            { date: todayFor(session).split(" ")[0], summary: data.summary },
-          ],
-        };
+        const date = todayFor(session).split(" ")[0];
+        const lastLog = m.session_log[m.session_log.length - 1];
+        const logEntry = { date, summary: data.summary };
+        const session_log =
+          lastLog && lastLog.date === date && lastLog.summary === data.summary
+            ? m.session_log
+            : [...m.session_log, logEntry];
+        return { ...m, facts: merged, session_log };
       });
       toast.success(
         `Extracted ${data.new_facts.length} fact(s). Switch to Session ${session === 1 ? 2 : 1} to see memory carry over.`,
