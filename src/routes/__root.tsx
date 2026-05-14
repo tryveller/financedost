@@ -72,14 +72,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
+      { title: "financepal" },
+      { name: "description", content: "AI financial assistant remembers user goals, uses tools for current data, and provides personalized advice across sessions." },
       { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "financepal" },
+      { property: "og:description", content: "AI financial assistant remembers user goals, uses tools for current data, and provides personalized advice across sessions." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "financepal" },
+      { name: "twitter:description", content: "AI financial assistant remembers user goals, uses tools for current data, and provides personalized advice across sessions." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d76ce493-d68d-470e-8090-63025917d791/id-preview-02af4b1f--5cd23fc1-2b1d-4c32-a445-0dfc6d2447a7.lovable.app-1778754990428.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/d76ce493-d68d-470e-8090-63025917d791/id-preview-02af4b1f--5cd23fc1-2b1d-4c32-a445-0dfc6d2447a7.lovable.app-1778754990428.png" },
     ],
     links: [
       {
