@@ -129,7 +129,11 @@ function Index() {
         { role: "assistant", content: data.text, toolEvents: data.toolEvents },
       ]);
       if (data.newReminders.length) {
-        setMemory((m) => ({ ...m, reminders: [...m.reminders, ...data.newReminders] }));
+        setMemory((m) => {
+          const existingIds = new Set(m.reminders.map((r) => r.id));
+          const fresh = data.newReminders.filter((r) => !existingIds.has(r.id));
+          return fresh.length ? { ...m, reminders: [...m.reminders, ...fresh] } : m;
+        });
       }
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Request failed";
