@@ -253,9 +253,9 @@ function Index() {
                 chat.map((m, i) => (
                   <div key={i} className="space-y-2">
                     <div
-                      className={`text-xs uppercase tracking-wide ${m.role === "user" ? "text-primary" : "text-muted-foreground"}`}
+                      className={`text-xs uppercase tracking-wide font-bold ${m.role === "user" ? "text-destructive" : "text-primary term-glow"}`}
                     >
-                      {m.role}
+                      {m.role === "user" ? "user@priya:~$" : "agent@finance:~#"}
                     </div>
                     <div className="whitespace-pre-wrap text-sm leading-relaxed">{m.content}</div>
                     {m.toolEvents && m.toolEvents.length > 0 && (
