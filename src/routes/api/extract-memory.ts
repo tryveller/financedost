@@ -41,7 +41,6 @@ export const Route = createFileRoute("/api/extract-memory")({
         } catch (err) {
           // Fallback: ask for JSON as plain text and parse defensively.
           try {
-            const { generateText } = await import("ai");
             const { text } = await generateText({
               model,
               messages: [
