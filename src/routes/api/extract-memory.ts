@@ -1,6 +1,6 @@
 import "@tanstack/react-start";
 import { createFileRoute } from "@tanstack/react-router";
-import { generateObject } from "ai";
+import { generateObject, generateText } from "ai";
 import { z } from "zod";
 import { createLovableAiGatewayProvider } from "@/lib/ai-gateway";
 
@@ -41,7 +41,6 @@ export const Route = createFileRoute("/api/extract-memory")({
         } catch (err) {
           // Fallback: ask for JSON as plain text and parse defensively.
           try {
-            const { generateText } = await import("ai");
             const { text } = await generateText({
               model,
               messages: [
