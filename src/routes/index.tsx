@@ -198,9 +198,11 @@ function Index() {
       <header className="border-b">
         <div className="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between gap-4 flex-wrap">
           <div>
-            <h1 className="text-xl font-semibold tracking-tight">Priya — Personal Finance Agent</h1>
+            <h1 className="text-xl font-bold tracking-tight term-glow" style={{ fontFamily: "var(--font-display)", fontSize: "1.75rem", letterSpacing: "0.05em" }}>
+              ┌─[PRIYA@finance-agent]─$ ./run
+            </h1>
             <p className="text-sm text-muted-foreground">
-              Two-session demo · persistent memory · disciplined tool usage
+              &gt; two-session demo · persistent memory · disciplined tool usage<span className="term-cursor"></span>
             </p>
           </div>
           <div className="flex items-center gap-2">
