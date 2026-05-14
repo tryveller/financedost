@@ -198,9 +198,11 @@ function Index() {
       <header className="border-b">
         <div className="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between gap-4 flex-wrap">
           <div>
-            <h1 className="text-xl font-semibold tracking-tight">Priya — Personal Finance Agent</h1>
+            <h1 className="text-xl font-bold tracking-tight term-glow" style={{ fontFamily: "var(--font-display)", fontSize: "1.75rem", letterSpacing: "0.05em" }}>
+              ┌─[PRIYA@finance-agent]─$ ./run
+            </h1>
             <p className="text-sm text-muted-foreground">
-              Two-session demo · persistent memory · disciplined tool usage
+              &gt; two-session demo · persistent memory · disciplined tool usage<span className="term-cursor"></span>
             </p>
           </div>
           <div className="flex items-center gap-2">
@@ -251,9 +253,9 @@ function Index() {
                 chat.map((m, i) => (
                   <div key={i} className="space-y-2">
                     <div
-                      className={`text-xs uppercase tracking-wide ${m.role === "user" ? "text-primary" : "text-muted-foreground"}`}
+                      className={`text-xs uppercase tracking-wide font-bold ${m.role === "user" ? "text-destructive" : "text-primary term-glow"}`}
                     >
-                      {m.role}
+                      {m.role === "user" ? "user@priya:~$" : "agent@finance:~#"}
                     </div>
                     <div className="whitespace-pre-wrap text-sm leading-relaxed">{m.content}</div>
                     {m.toolEvents && m.toolEvents.length > 0 && (
