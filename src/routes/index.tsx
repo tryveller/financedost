@@ -283,6 +283,24 @@ function Index() {
               )}
               {busy && <div className="text-sm text-muted-foreground italic">thinking…</div>}
             </div>
+            {chat.length > 0 && (
+              <div className="border-t p-2 space-y-1">
+                <div className="text-xs text-muted-foreground px-1">&gt; sample turns</div>
+                <div className="flex flex-wrap gap-1">
+                  {SAMPLE_TURNS[session].map((t) => (
+                    <button
+                      key={t}
+                      onClick={() => send(t)}
+                      disabled={busy}
+                      className="text-left text-xs rounded border px-2 py-1 hover:bg-accent disabled:opacity-50 max-w-full truncate"
+                      title={t}
+                    >
+                      {t.length > 70 ? t.slice(0, 70) + "…" : t}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
             <div className="border-t p-3 space-y-2">
               <Textarea
                 value={input}
